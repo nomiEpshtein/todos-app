@@ -1,0 +1,156 @@
+body {
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* כותרות */
+h1, h2, h3, h {
+    font-weight: 700;
+    text-align: center;
+    color: #1e40af;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #2563eb, #1e3a8a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* קישורים */
+a {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 12px 28px;
+    border-radius: 10px;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+}
+
+a:hover {
+    transform: translateY(-4px);
+    background-color: #1d4ed8;
+}
+
+/* הודעות */
+.flash-messages {
+    list-style: none;
+    padding: 20px 30px;
+    border-radius: 14px;
+    background-color: #fef3c7;
+    color: #92400e;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeIn 0.6s ease;
+}
+
+/* כפתורים */
+button, .btn {
+    padding: 14px 25px;
+    border-radius: 12px;
+    border: none;
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: #1e40af;
+}
+
+/* טפסים */
+form {
+    background-color: #fff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-2px);
+}
+
+input, select {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 12px rgba(37,99,235,0.3);
+}
+
+/* טבלאות */
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    margin: 30px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:nth-child(even) td {
+    background-color: #f3f4f6;
+}
+
+tr:hover td {
+    background-color: #e0f2fe;
+    transition: all 0.2s ease;
+}
+
+/* אנימציה פשוטה */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-5px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* רספונסיבי */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+    form, table {
+        width: 100%;
+    }
+}

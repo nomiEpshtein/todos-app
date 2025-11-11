@@ -1,0 +1,64 @@
+{% extends 'index.html'%}
+
+{% block head %}
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock  %}
+{% block body %}
+<form method="post" action="{{ url_for('postShow') }}">
+    תאריך התחלה: <input type="date" name="start" value="{{ start }}">
+    תאריך סיום: <input type="date" name="end" value="{{ end }}">
+    
+    קטגוריה:
+    <select name="category">
+        <option value="all" {% if category == 'all' or not category %}selected{% endif %}>כל הקטגוריות</option>
+        <option value="אוכל" {% if category == 'אוכל' %}selected{% endif %}>אוכל</option>
+        <option value="ביגוד" {% if category == 'ביגוד' %}selected{% endif %}>ביגוד</option>
+        <option value="אלקטרוניקה" {% if category == 'אלקטרוניקה' %}selected{% endif %}>אלקטרוניקה</option>
+     
+    </select>
+
+    <input type="hidden" name="limit" value="{{ limit }}">
+    <button type="submit">חפש</button>
+</form>
+
+{% if purchases %}
+<table>
+    <tr>
+        <th>productName</th>
+        <th>amount</th>
+        <th>price</th>
+        <th>category</th>
+        <th>date</th>
+    </tr>
+    {% for p in purchases %}
+    <tr>
+        <td>{{ p.product_name }}</td>
+        <td>{{ p.amount }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if show_more %}
+<form method="post" action="{{ url_for('postShow') }}">
+    <input type="hidden" name="start" value="{{ start }}">
+    <input type="hidden" name="end" value="{{ end }}">
+    <input type="hidden" name="category" value="{{ category }}">
+    <input type="hidden" name="limit" value="{{ limit + 5 }}">
+    <button type="submit">ראה עוד</button>
+</form>
+{% endif %}
+
+{% else %}
+<h2>אין רכישות</h2>
+{% endif %}
+<form action="{{ url_for('saveData') }}" method="get">
+    <button type="submit">גיבוי נתונים</button>
+</form>
+
+<a href="/add">הוסף רכישה</a>
+<a href="/graph">סטיסטיקות</a>
+{% endblock  %}
+

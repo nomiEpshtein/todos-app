@@ -1,0 +1,41 @@
+{% extends 'index.html'%}
+
+{% block head %}
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/graph.css') }}">
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for msg in messages %}
+        <li>{{ msg }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endblock  %} 
+
+
+{% block body %}
+  <h1>ניתוח רכישות לפי קטגוריות</h1>
+   <form action="graph" method="post">
+        <label for="operation">בחר חישוב:</label>
+        <select name="operation" id="operation">
+            <option value="sum">סכום</option>
+            <option value="mean">ממוצע</option>
+            <option value="count">ספירה</option>
+        </select>
+
+        <label for="start">תאריך התחלה:</label>
+        <input type="date" name="start" id="start">
+
+        <label for="end">תאריך סיום:</label>
+        <input type="date" name="end" id="end">
+
+        <label for="chart_type">בחר סוג גרף:</label>
+        <select name="chart_type" id="chart_type">
+        <option value="bar">עמודות</option>
+        <option value="pie">עוגה</option>
+         </select>
+
+        <button type="submit">חשב</button>
+    </form>
+{% endblock  %}
