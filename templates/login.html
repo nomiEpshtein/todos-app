@@ -17,7 +17,7 @@
 {% block body %}
 <h>login</h>
 <form action="login" method="post">
-    <input type="text" name="email" placeholder="input email">
+     <input type="email" name="email" placeholder="input email" value="{{ email }}">
     <input type="text" name="password" placeholder="input password">
     <input type="submit" value="login">  
 </form>

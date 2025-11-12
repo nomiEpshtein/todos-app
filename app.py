@@ -84,7 +84,9 @@ def getLogin():
     if session.get('is_demo'):
         flash("-פונקציה זו אינה זמינה במצב הדגמה.הרשם")
         return redirect('register')
-    return render_template("login.html")
+    saved_email = session.get('email', '') 
+    return render_template("login.html", email=saved_email)
+  
 
 @app.post("/login")
 def postLogin():
@@ -94,6 +96,7 @@ def postLogin():
     if user:
         session['user_id'] = user.id 
         session['is_demo'] = False 
+        session['email'] = email 
         return redirect(url_for('getProfile'))
     if not user:
       return render_template("error.html")
