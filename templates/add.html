@@ -20,7 +20,12 @@
         <input type="text" name="product_name" placeholder="שם מוצר" >
         <input type="number" name="amount" placeholder="כמות" >
         <input type="number" step="0.01" name="price" placeholder="מחיר" >
-        <input type="text" name="category" placeholder="קטגוריה" >
+         קטגוריה:<select name="category">
+        <option value="all" {% if category == 'all' or not category %}selected{% endif %}>כל הקטגוריות</option>
+        <option value="אוכל" {% if category == 'אוכל' %}selected{% endif %}>אוכל</option>
+        <option value="ביגוד" {% if category == 'ביגוד' %}selected{% endif %}>ביגוד</option>
+        <option value="אלקטרוניקה" {% if category == 'אלקטרוניקה' %}selected{% endif %}>אלקטרוניקה</option>
+       </select>
         <input type="date" name="date" placeholder="תאריך ">
         <button type="submit">הוסף רכישה</button>
     </form>

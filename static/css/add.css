@@ -10,7 +10,7 @@ form {
     margin: auto;
 }
 
-input[type="number"], input[type="text"], input[type="date"], button {
+input[type="number"], input[type="text"], input[type="date"], button ת,select{
     width: 100%;
     margin-bottom: 10px;
 }

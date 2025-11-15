@@ -4,7 +4,7 @@
  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 {% endblock  %}
 {% block body %}
-<form method="post" action="{{ url_for('postShow') }}">
+<form method="post" action="{{ url_for('postShow') }}" >
     תאריך התחלה: <input type="date" name="start" value="{{ start }}">
     תאריך סיום: <input type="date" name="end" value="{{ end }}">
     

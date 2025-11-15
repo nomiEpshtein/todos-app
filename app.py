@@ -46,7 +46,6 @@ def getHomePage():
 def getProfile():
     Purchase.query.filter(Purchase.date < datetime(1900, 1, 1).date()).delete()
     db.session.commit()
-    db.session.commit()
     user_id = session.get('user_id')
     if not user_id:
         return redirect(url_for('getLogin'))
@@ -65,8 +64,8 @@ def getRegister():
 
 @app.post("/register")
 def postRegister():
-    if session.get('is_demo'):
-         flash("-פונקציה זו אינה זמינה במצב הדגמה.הרשם")
+    # if session.get('is_demo'):
+    #      flash("-פונקציה זו אינה זמינה במצב הדגמה.הרשם")
     email = request.form.get('email')
     password = request.form.get('password')
     if User.query.filter_by(email=email).first():
@@ -244,7 +243,6 @@ def saveData():
     ]
 
     df = pd.DataFrame(data)
-     # יצירת קובץ CSV בזיכרון
     csv_buffer = io.StringIO()
     df.to_csv(csv_buffer, index=False, encoding="utf-8-sig")
     csv_buffer.seek(0)
