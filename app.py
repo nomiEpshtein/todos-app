@@ -205,6 +205,16 @@ def postShow():
         total_count = query.count()
         user_purchases = query.order_by(Purchase.date.desc()).limit(limit).all()
         show_more = total_count > limit
+        session['now_useres'] = [
+    {
+        "product_name": p.product_name,
+        "amount": p.amount,
+        "price": p.price,
+        "category": p.category,
+        "date": str(p.date) 
+    }
+    for p in user_purchases
+]
 
     return render_template(
         "profile.html",
@@ -226,23 +236,24 @@ def saveData():
     if not user_id:
         return redirect(url_for('getLogin'))
     
-    purchases = Purchase.query.filter_by(user_id=user_id).all()
-
+        
+    purchases = session.get('now_useres', [])
     if not purchases:
-      return render_template("error.html")
+            purchases = Purchase.query.filter_by(user_id=user_id).all()
+            if not purchases:
+               return render_template("error.html")
+            purchases = [
+                {
+                    "product_name": p.product_name,
+                    "amount": p.amount,
+                    "price": p.price,
+                    "category": p.category,
+                    "date": p.date
+                }
+                for p in purchases
+            ]
 
-    data = [
-        {
-            "product_name": p.product_name,
-            "amount": p.amount,
-            "price": p.price,
-            "category": p.category,
-            "date": p.date
-        }
-        for p in purchases
-    ]
-
-    df = pd.DataFrame(data)
+    df = pd.DataFrame( purchases )
     csv_buffer = io.StringIO()
     df.to_csv(csv_buffer, index=False, encoding="utf-8-sig")
     csv_buffer.seek(0)
